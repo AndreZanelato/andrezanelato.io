@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Verifique se o nome de usuário e senha correspondem
         if (username === user && password === pass) {
             // Redirecione para a página de notas se o login for bem-sucedido
-            window.location.href = 'andrezanelato.github.io/notes.html';
+            window.location.href = 'https://andrezanelato.github.io/notes.html';
         } else {
             // Exiba uma mensagem de erro se o login falhar
             alert('Nome de usuário ou senha incorretos. Tente novamente.');
