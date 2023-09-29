@@ -1,40 +1,63 @@
-const user = 'andrezanelato';
-const pass = '1597'
+
+// SISTEMA PARA SALVAR NOTAS
 
 document.addEventListener('DOMContentLoaded', function () {
-    const loginForm = document.getElementById('login-form');
-
-    loginForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        // Aqui você pode adicionar lógica de autenticação
-        // Verifique se o nome de usuário e senha correspondem
-        if (username === user && password === pass) {
-            // Redirecione para a página de notas se o login for bem-sucedido
-            window.location.href = 'notes.html';
-        } else {
-            // Exiba uma mensagem de erro se o login falhar
-            alert('Nome de usuário ou senha incorretos. Tente novamente.');
-        }
-    })
-})
-
-document, addEventListener('DOMContentLoaded', function () {
-    const noteTextarea = this.document.getElementById('note');
-
-    // Recupera as notas do armazenamento local se houver algum
-    const savedNote = this.localStorage.getItem('note');
-
+    const noteTextarea = document.getElementById('note');
+    
+    // Recupera as notas do armazenamento local, se houver alguma
+    const savedNote = localStorage.getItem('note');
     if (savedNote) {
         noteTextarea.value = savedNote;
     }
-
+    
     // Salva as notas no armazenamento local sempre que houver uma alteração
     noteTextarea.addEventListener('input', function () {
         const noteContent = noteTextarea.value;
         localStorage.setItem('note', noteContent);
     })
+})
+
+
+
+
+// SISTEMA DE LOGIN
+
+const usuarios = [
+    {
+        login: 'andrezanelato',
+        pass: '1597'
+    },
+    {
+        login: 'maria',
+        pass: '1234'
+    },
+    {
+        login: 'admin',
+        pass: 'localadmin'
+    }
+]
+
+let botao = document.getElementById('loginBtn');
+
+botao.addEventListener('click', function logar() {
+
+    let pegaUsuario = document.getElementById('username').value;
+    let pegaSenha = document.getElementById('password').value;
+    let validaLogin = false;
+
+    for (let i in usuarios) {
+
+        if (pegaUsuario == usuarios[i].login && pegaSenha == usuarios[i].pass) {
+            validaLogin = true;
+            break;
+        }
+    }
+
+    if (validaLogin == true) {
+        // Redirecione para a página de notas se o login for bem-sucedido
+        location.href = 'notes.html';
+    } else {
+        alert('Nome de usuário ou senha incorretos. Tente novamente.');
+    }
+
 })
